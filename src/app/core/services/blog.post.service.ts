@@ -1,9 +1,9 @@
 import { AddBlogPostCommand } from '../commands/add.blog.post.command';
+import { BlogPostsRepository } from '../interface/blog.posts.repository';
 import { DataResponse } from '../response/data.response';
 import { DeleteBlogPostCommand } from '../commands/delete.blog.post.command';
 import { GetBlogPostQuery } from '../query/get.blog.post.query';
 import { GetBlogPostsQuery } from '../query/get.blog.posts.query';
-import { IBlogPostsRepository } from '../interface/blog.posts.repository';
 import { Injectable } from '@angular/core';
 import { NewRecordResponse } from '../response/new.record.response';
 import { Require } from '../helpers/require';
@@ -15,7 +15,7 @@ import { UpdateBlogPostCommand } from '../commands/update.blog.post.command';
 
 export class BlogPostService
 {
-  constructor(private blogPostRepository: IBlogPostsRepository) {
+  constructor(private blogPostRepository: BlogPostsRepository) {
     Require.thatParameterIsDefined(blogPostRepository, "repository should be defined");
   }
 
@@ -23,7 +23,6 @@ export class BlogPostService
     let response = new NewRecordResponse();
 
     // todo: execute validation
-
     let newRecordResponse = await this.blogPostRepository.addBlogPost(command);
     return newRecordResponse;
   }
@@ -49,17 +48,13 @@ export class BlogPostService
     let response = new DataResponse();
 
     // todo: execute validation
-    let record = await this.blogPostRepository.getBlogPost(query);
-    response.data = record;
-    return response;
+    return await this.blogPostRepository.getBlogPost(query);
   }  
 
   async getBlogPosts(query: GetBlogPostsQuery) {
     let response = new DataResponse();
 
     // todo: execute validation
-    let records = await this.blogPostRepository.getBlogPosts(query);
-    response.data = records;
-    return response;
+    return await this.blogPostRepository.getBlogPosts(query);
   }  
 }

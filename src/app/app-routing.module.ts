@@ -1,7 +1,7 @@
-import { EditBlogPostsComponent } from './edit-blog-posts/edit-blog-posts.component';
-import { ListBlogPostsComponent } from './list-blog-posts/list-blog-posts.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EditBlogPostsComponent } from './presentation/edit-blog-posts/edit-blog-posts.component';
+import { ListBlogPostsComponent } from './presentation/list-blog-posts/list-blog-posts.component';
 
 const routes: Routes = [
   { path: '', component: ListBlogPostsComponent },

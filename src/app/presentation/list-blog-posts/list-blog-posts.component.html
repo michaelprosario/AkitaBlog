@@ -1,0 +1,16 @@
+<button (click)="handleAddPost()">Add post</button>
+<hr>
+<table *ngIf="dataReady">
+  <tr>
+    <th>Title</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tbody *ngFor="let post of posts">
+    <tr>
+      <td>{{post.title}}</td>
+      <td>
+        <button type="button" title="Edit record" (click)="openRecord(post.id)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,22 @@
+<button (click)="onSave(false)">Save</button>
+<button (click)="onSave(true)">Save and close</button>
+<button (click)="onDelete()">Delete</button>
+<hr>
+<table>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      <input type="text" [(ngModel)]="record.title">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Context
+    </td>
+    <td>
+      <textarea [(ngModel)]="record.content" class="txtContent"></textarea>
+    </td>
+  </tr>
+</table>
